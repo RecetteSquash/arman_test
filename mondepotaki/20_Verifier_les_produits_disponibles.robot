@@ -77,10 +77,10 @@ Retrieve Datatables
     ...                with each datatable name as key, and each datatable list as value :
     ...                &{datatables} =    Create Dictionary    datatable_1=${datatable_1}    datatable_2=${datatable_2}
 
-    @{row_1_1} =    Create List    Table de données    produit    prix
-    @{row_1_2} =    Create List    Expresso            0.40
-    @{row_1_3} =    Create List    Lungo               0.50
-    @{row_1_4} =    Create List    Cappuccino          0.80
+    @{row_1_1} =    Create List    produit       prix
+    @{row_1_2} =    Create List    Expresso      0.40
+    @{row_1_3} =    Create List    Lungo         0.50
+    @{row_1_4} =    Create List    Cappuccino    0.80
     @{datatable_1} =    Create List    ${row_1_1}    ${row_1_2}    ${row_1_3}    ${row_1_4}
 
     &{datatables} =    Create Dictionary    datatable_1=${datatable_1}
