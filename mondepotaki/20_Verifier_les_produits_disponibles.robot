@@ -14,12 +14,11 @@ Vérifier les produits disponibles
     [Documentation]    Vérifier les produits disponibles
 
     &{datatables} =    Retrieve Datatables
-    &{docstrings} =    Retrieve Docstrings
 
-    Given la machine est en marche "${docstrings}[docstring_1]"
-    When je liste les produits disponibles. "${docstrings}[docstring_2]"
+    Given la machine est en marche "${datatables}[datatable_1]"
+    When je liste les produits disponibles. "${datatables}[datatable_2]"
     # Seuls les produits de la catégorie Café sont vérifiés dans ce test
-    Then je constate que tous les produits suivants sont disponibles : "${datatables}[datatable_1]"
+    Then je constate que tous les produits suivants sont disponibles : "${datatables}[datatable_3]"
     # Vérifier un commentaire + une table de données
 
 
@@ -77,35 +76,24 @@ Retrieve Datatables
     ...                with each datatable name as key, and each datatable list as value :
     ...                &{datatables} =    Create Dictionary    datatable_1=${datatable_1}    datatable_2=${datatable_2}
 
-    @{row_1_1} =    Create List    produit       prix
-    @{row_1_2} =    Create List    Expresso      0.40
-    @{row_1_3} =    Create List    Lungo         0.50
-    @{row_1_4} =    Create List    Cappuccino    0.80
+    @{row_1_1} =    Create List    animal    quantité
+    @{row_1_2} =    Create List    chien     3
+    @{row_1_3} =    Create List    chat      4
+    @{row_1_4} =    Create List    oiseau    6
     @{datatable_1} =    Create List    ${row_1_1}    ${row_1_2}    ${row_1_3}    ${row_1_4}
 
-    &{datatables} =    Create Dictionary    datatable_1=${datatable_1}
+    @{row_2_1} =    Create List    outil       prix
+    @{row_2_2} =    Create List    Balai       7.50
+    @{row_2_3} =    Create List    Marteau     15.00
+    @{row_2_4} =    Create List    Cisaille    12.50
+    @{datatable_2} =    Create List    ${row_2_1}    ${row_2_2}    ${row_2_3}    ${row_2_4}
+
+    @{row_3_1} =    Create List    produit       prix
+    @{row_3_2} =    Create List    Expresso      0.40
+    @{row_3_3} =    Create List    Lungo         0.50
+    @{row_3_4} =    Create List    Cappuccino    0.80
+    @{datatable_3} =    Create List    ${row_3_1}    ${row_3_2}    ${row_3_3}    ${row_3_4}
+
+    &{datatables} =    Create Dictionary    datatable_1=${datatable_1}    datatable_2=${datatable_2}    datatable_3=${datatable_3}
 
     RETURN    &{datatables}
-
-Retrieve Docstrings
-    [Documentation]    Retrieves SquashTM's docstrings and stores them in a dictionary.
-    ...
-    ...                For instance, two docstrings have been defined in SquashTM,
-    ...                the first one containing the string
-    ...                "I am the
-    ...                FIRST    docstring",
-    ...                the second one containing the string "I am the second docstring"
-    ...
-    ...                First, this keyword retrieves values and converts them to an inline string :
-    ...                ${docstring_1} =    Set Variable    I am the\nFIRST\tdocstring"
-    ...
-    ...                Then, this keyword stores the docstrings into the &{docstrings} dictionary
-    ...                with each docstring name as key, and each docstring value as value :
-    ...                ${docstrings} =    Create Dictionary    docstring_1=${docstring_1}    docstring_2=${docstring_2}
-
-    ${docstring_1} =    Set Variable    Le message "Choisissez votre produit" apparait.
-    ${docstring_2} =    Set Variable    le prix des produits s'affiche à droite sur l'écran et le nom des produits à gauche
-
-    &{docstrings} =    Create Dictionary    docstring_1=${docstring_1}    docstring_2=${docstring_2}
-
-    RETURN    &{docstrings}
